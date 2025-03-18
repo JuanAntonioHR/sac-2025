@@ -14,6 +14,7 @@ import hands from '@/assets/character-editor/body/hands.png';
 
 import { loadImage, applyInvertFilter, createSVG, createQRSVG, SVG_SLEEVE, SVG_TORSO } from '@/utils/canvasUtils';
 import { GlareCard } from '@/components/ui/glare-card';
+import { BackgroundLines } from '@/components/ui/background-lines';
 
 interface Params {
     qrgenerator: string[];
@@ -158,14 +159,14 @@ export default function Page({ params }: { params: Params }) {
     }
 
     return (
-        <div className=' w-full min-h-fit h-screen p-5 gap-5 bg-yellowsac flex flex-col items-center'>
-            <button onClick={() => downloadImage(canvasInstance?.toDataURL({ format: 'png', multiplier: 1 }) || '')} className="w-full md:w-fit cursor-pointer px-4 py-2 rounded-2xl bg-blacksac text-white">
+        <BackgroundLines className='min-w-fit w-full min-h-fit h-screen p-5 gap-5 flex flex-col items-center bg-slate-950'>
+            <button onClick={() => downloadImage(canvasInstance?.toDataURL({ format: 'png', multiplier: 1 }) || '')} className="w-full md:w-fit cursor-pointer px-4 py-2 rounded-2xl bg-white text-black">
                 Descargar Imagen
             </button>
 
             <GlareCard>
                 <canvas ref={canvasRef} width={594 * scaleFactor} height={942 * scaleFactor}></canvas>
             </GlareCard>
-        </div>
+        </BackgroundLines>
     );
 }
