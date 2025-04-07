@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"; // Añade useEffect aquí
 import { createRoot } from "react-dom/client";
 import PDF from "../generatepdf/PDF";
 import useRecord from "@/hooks/useRecord";
+import useStudent from "@/hooks/useStudent";
 
 interface Workshop {
   id: number;
@@ -15,9 +16,17 @@ interface ExpedienteData {
   workshops: Workshop[];
 }
 
+interface Student {
+  expediente: number;
+  lego_image: string;
+  url_image: string;
+}
+
 export default function DownloadPdfButton() {
   const [isGenerating, setIsGenerating] = useState(false);
   const { fetchExpediente, data } = useRecord<ExpedienteData>();
+  const { fetchStudentInfo, dataStudent } = useStudent<Student>();
+
   const [storedCode, setStoredCode] = useState<string | null>(null);
 
   // Ahora useEffect está correctamente importado
@@ -25,6 +34,7 @@ export default function DownloadPdfButton() {
     const code = localStorage.getItem("expedienteCode");
     setStoredCode(code);
     if (code) fetchExpediente(code);
+    if (code) fetchStudentInfo(code);
   }, []);
 
   const generatePDF = async () => {
@@ -60,7 +70,12 @@ export default function DownloadPdfButton() {
       document.body.appendChild(container);
 
       const root = createRoot(element);
-      root.render(<PDF data={data} />);
+      if (dataStudent) {
+        root.render(<PDF data={data} dataStudent={dataStudent} />);
+      } else {
+        console.error("dataStudent is null and cannot be passed to PDF component.");
+        alert("Error: Información del estudiante no disponible.");
+      }
 
       await new Promise(resolve => setTimeout(resolve, 1000));
 
