@@ -1,6 +1,12 @@
 import React from "react";
+import ProfileImageGenerator from "./ProfileImageGenerator";
 
-function Perfil({ exp }: { exp: number }) {
+interface PerfilProps {
+  exp: number;
+  urlImage: string;
+}
+
+function Perfil({ exp, urlImage }: PerfilProps) {
   return (
     <div style={{ 
       position: "relative", // Cambiado de absolute a relative
@@ -24,15 +30,7 @@ function Perfil({ exp }: { exp: number }) {
         alignItems: "center",
         marginTop: "85px" // Reemplaza el posicionamiento absoluto
       }}>
-        <img 
-          style={{
-            width: '15vh',
-            height: '15vh',
-            borderRadius: '50%'
-          }} 
-          src="/perfil.png" 
-          alt="Perfil" 
-        />
+        <ProfileImageGenerator urlImage={urlImage} />
         <div style={{
           color: 'black', 
           fontSize: '35px', 

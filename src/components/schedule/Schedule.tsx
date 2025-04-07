@@ -7,7 +7,6 @@ import scheduleData from "../../testdata/schedule.json";
 import ErrorComponent from "../error/ErrorComponent";
 import Block from "./Block";
 import ScheduleButton from "./ScheduleButton";
-import styles from "./Schedule.module.css"
 
 const Schedule = () => {
   const data = scheduleData as ScheduleDay[];
@@ -62,7 +61,7 @@ const Schedule = () => {
             })}
           </div>
 
-          <div className={`w-full self-start overflow-x-scroll xl:overflow-clip ${styles.scheduleScroll}`}>
+          <div className={`w-full self-start overflow-x-scroll xl:overflow-clip`}>
             <div
               className={`grid items-center xl:w-full w-[1500px] h-full mt-5 grid-rows-10 p-5 grid-cols-auto`}
             >
