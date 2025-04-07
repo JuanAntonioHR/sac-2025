@@ -39,10 +39,10 @@ const LegoModal = () => {
             height={250}
             className="mb-30"
           />
-<p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                      text-whitesac font-bold text-xl bg-opacity-50 px-4 py-2 rounded-lg">
+        <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2    text-whitesac font-bold text-xl bg-opacity-50 px-4 py-2 rounded-lg">
           COMING SOON...
-        </p>          <input
+        </p>          
+        <input
             type="number"
             value={expediente}
             onChange={(e) => setExpediente(e.target.value)}
