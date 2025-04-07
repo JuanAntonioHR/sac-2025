@@ -15,9 +15,14 @@ interface PDFProps {
       date: string;
     }[];
   };
+  dataStudent: {
+    expediente: number;
+    lego_image: string;
+    url_image: string;
+  };
 }
 
-function PDF({ data }: PDFProps) {
+function PDF({ data, dataStudent }: PDFProps) {
   return (
     <div style={{ 
       width: "100%",
@@ -38,7 +43,7 @@ function PDF({ data }: PDFProps) {
         position: "relative"
       }}>
         <Bloques1 />   
-        <Perfil exp={data.exp} />
+        <Perfil exp={dataStudent.expediente} urlImage={dataStudent.url_image} />
         <Tablas workshops={data.workshops} />
         </div>
 
